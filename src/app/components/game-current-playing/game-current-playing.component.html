@@ -1,16 +1,18 @@
 <h2>Jogando atualmente</h2>
 
-<blockquote>
+<div class="game-container">
   <ng-container *ngIf="currentGame; else elseTemplate">
     <img class="game-thumb" [src]="currentGame.coverURL" [alt]="currentGame.name">
     <h3>
       {{ currentGame.name }}
     </h3>
-    <p>
-      Tempo de jogo: <mark>00:00</mark>
-    </p>
+    <div class="action-buttons">
+      <button (click)="pause()" *ngIf="state === 'playing'">Pausar</button>
+      <button (click)="play()" *ngIf="state === 'paused'">Continuar</button>
+      <button (click)="stop()">Parar</button>
+    </div>
   </ng-container>
   <ng-template #elseTemplate>
     <p>Nenhum jogo selecionado, busque e selecione um jogo ao lado</p>
   </ng-template>
-</blockquote>
+</div>

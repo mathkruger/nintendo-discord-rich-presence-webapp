@@ -1,6 +1,21 @@
+.game-container {
+    padding: 1.5rem;
+    background: var(--nc-bg-2);
+    border-left: 5px solid var(--nc-bg-3);
+}
 .game-thumb {
     display: block;
     width: 120px;
     margin: 0 auto;
     margin-bottom: 1rem;
+}
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.action-buttons button {
+    width: 100%;
 }
