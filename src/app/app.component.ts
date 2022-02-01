@@ -26,8 +26,9 @@ export class AppComponent implements OnInit {
 
       if (currentGame) {
         const gameObject = JSON.parse(currentGame);
-        this.gameService.setCurrentSelectedGame(gameObject);
-        this.discordService.updateDiscord(gameObject.name);
+        this.discordService.updateDiscord(gameObject.name).subscribe(() => {
+            this.gameService.setCurrentSelectedGame(gameObject);
+        });
       }
 
       this.isLoading = false;

@@ -28,8 +28,9 @@ export class GameListComponent implements OnChanges {
   selectGame(game: any) {
     window.scrollTo(0,0);
     window.localStorage.setItem('currentGame', JSON.stringify(game));
-    this.gameService.setCurrentSelectedGame(game);
-    this.discordService.updateDiscord(game.name);
+    this.discordService.updateDiscord(game.name).subscribe(() => {
+        this.gameService.setCurrentSelectedGame(game);
+    });
   }
 
 }
