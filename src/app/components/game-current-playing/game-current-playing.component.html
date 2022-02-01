@@ -1,0 +1,16 @@
+<h2>Jogando atualmente</h2>
+
+<blockquote>
+  <ng-container *ngIf="currentGame; else elseTemplate">
+    <img class="game-thumb" [src]="currentGame.coverURL" [alt]="currentGame.name">
+    <h3>
+      {{ currentGame.name }}
+    </h3>
+    <p>
+      Tempo de jogo: <mark>00:00</mark>
+    </p>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <p>Nenhum jogo selecionado, busque e selecione um jogo ao lado</p>
+  </ng-template>
+</blockquote>

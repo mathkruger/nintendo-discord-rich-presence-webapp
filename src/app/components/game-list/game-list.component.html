@@ -1,0 +1,18 @@
+<table *ngIf="list && list.length > 0">
+  <thead>
+    <th>Imagem</th>
+    <th>Nome</th>
+    <th></th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of list">
+      <td style="min-width: 300;">
+        <img class="cover-image" [src]="item.coverURL" [alt]="item.name">
+      </td>
+      <td>{{ item.name }}</td>
+      <td>
+        <button (click)="selectGame(item)">Jogar</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
