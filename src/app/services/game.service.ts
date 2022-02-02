@@ -31,6 +31,13 @@ export class GameService {
   }
 
   setCurrentSelectedGame(game: any) {
+    if (game) {
+      window.localStorage.setItem('currentGame', JSON.stringify(game));
+    }
+    else {
+      window.localStorage.removeItem('currentGame');
+    }
+    
     this.currentSelectedGame.next(game);
   }
 

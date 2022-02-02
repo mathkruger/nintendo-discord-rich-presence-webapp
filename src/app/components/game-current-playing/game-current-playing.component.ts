@@ -22,19 +22,19 @@ export class GameCurrentPlayingComponent implements OnInit {
   }
 
   pause() {
-    this.discordService.removePresence().subscribe(() => {
+    this.discordService.updateDiscord(this.currentGame.name, 'paused').subscribe(() => {
       this.state = 'paused';
     });
   }
 
   play() {
-    this.discordService.updateDiscord(this.currentGame.name).subscribe(() => {
+    this.discordService.updateDiscord(this.currentGame.name, 'playing').subscribe(() => {
       this.state = 'playing';
     });
   }
 
   stop() {
-    this.discordService.removePresence().subscribe(() => {
+    this.discordService.updateDiscord('💤💤💤', 'no-game').subscribe(() => {
       this.state = null;
       this.gameService.setCurrentSelectedGame(null);
     });
