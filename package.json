@@ -9,8 +9,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "init": "npm run build && npm run init:server",
-    "init:server": "git subtree add --prefix server https://github.com/mathkruger/nintendo-discord-rich-presence-server.git master --squash && cd server && npm install",
-    "update:server": "git subtree pull --prefix server https://github.com/mathkruger/nintendo-discord-rich-presence-server.git master --squash",
+    "install-dependencies:server": "cd server && npm install",
+    "init:server": "git subtree add --prefix server https://github.com/mathkruger/nintendo-discord-rich-presence-server.git master --squash && npm run install-dependencies:server",
+    "update:server": "git subtree pull --prefix server https://github.com/mathkruger/nintendo-discord-rich-presence-server.git master --squash && npm run install-dependencies:server",
     "start:electron": "electron .",
     "start-and-build:electron": "ng build --base-href ./ && npm run update:server && electron ."
   },
