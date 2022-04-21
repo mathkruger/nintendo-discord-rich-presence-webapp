@@ -2,7 +2,7 @@
 
 <div class="game-container">
   <ng-container *ngIf="currentGame; else elseTemplate">
-    <img class="game-thumb" [src]="currentGame.coverURL" [alt]="currentGame.name">
+    <img class="game-thumb" [src]="'https://' + currentGame.coverURL" [alt]="currentGame.name">
     <h3>
       {{ currentGame.name }}
     </h3>

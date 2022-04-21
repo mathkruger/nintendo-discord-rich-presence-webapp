@@ -1,12 +1,15 @@
 {
   "name": "nintendo-discord-rich-presence-webapp",
   "version": "0.0.0",
+  "main": "app.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "start:electron": "electron .",
+    "start-and-build:electron": "ng build --base-href ./ && electron ."
   },
   "private": true,
   "dependencies": {
@@ -28,6 +31,7 @@
     "@angular/compiler-cli": "~12.1.2",
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
+    "electron": "^18.1.0",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

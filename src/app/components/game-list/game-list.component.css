@@ -1,3 +1,8 @@
+.game-list {
+    max-height: 400px;
+    overflow: auto;
+}
+
 .cover-image {
     width: 120px;
 }
