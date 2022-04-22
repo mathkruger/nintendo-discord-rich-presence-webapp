@@ -37,7 +37,7 @@ function startServer() {
 
 function initWindow() {
     appWindow = new BrowserWindow({
-        width: 1000,
+        width: 400,
         height: 800,
         webPreferences: {
             nodeIntegration: true

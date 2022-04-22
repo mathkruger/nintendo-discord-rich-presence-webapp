@@ -3,4 +3,5 @@
 <input class="search-input" #searchInput (keyup.enter)="searchGame(searchInput.value)" placeholder="Digite o termo para a busca"
   type="text" />
 
+<p *ngIf="loading">Carregando ...</p>
 <app-game-list [list]="gameList"></app-game-list>

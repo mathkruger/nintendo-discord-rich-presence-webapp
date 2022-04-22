@@ -6,3 +6,9 @@
 .cover-image {
     width: 120px;
 }
+
+@media screen and (max-width: 600px) {
+    .game-list {
+        max-height: 200px;
+    }
+}

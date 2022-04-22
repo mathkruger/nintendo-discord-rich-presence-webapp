@@ -9,6 +9,12 @@
     margin: 0 auto;
     margin-bottom: 1rem;
 }
+
+.description {
+    max-height: 200px;
+    overflow: hidden;
+}
+
 .action-buttons {
     display: flex;
     align-items: center;
@@ -18,4 +24,10 @@
 
 .action-buttons button {
     width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .description {
+        display: none;
+    }
 }

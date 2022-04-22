@@ -11,5 +11,4 @@ export class GameSelectorComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

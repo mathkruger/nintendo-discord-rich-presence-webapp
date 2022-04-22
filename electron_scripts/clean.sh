@@ -9,5 +9,4 @@ rm resources/app/.gitignore
 rm resources/app/.editorconfig
 rm resources/app/.browserslistrc
 rm -r resources/app/electron_scripts/
-rm -r resources/app/node_modules/
 rm -r resources/app/src/

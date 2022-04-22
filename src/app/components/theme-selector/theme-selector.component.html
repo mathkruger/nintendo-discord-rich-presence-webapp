@@ -1,0 +1,4 @@
+<button class="theme-selector" (click)="setStyle(currentTheme === 'light' ? 'dark' : 'light')">
+  <ng-container *ngIf="currentTheme === 'dark'">☀️</ng-container>
+  <ng-container *ngIf="currentTheme === 'light'">🌛</ng-container>
+</button>

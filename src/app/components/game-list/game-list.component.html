@@ -1,14 +1,9 @@
 <div class="game-list">
   <table *ngIf="list && list.length > 0">
-    <thead>
-      <th>Imagem</th>
-      <th>Nome</th>
-      <th></th>
-    </thead>
     <tbody>
       <tr *ngFor="let item of list">
         <td style="max-width: 300;">
-          <img class="cover-image" [src]="item.boxart" [alt]="item.title">
+          <img class="cover-image" [src]="item.boxart || item.horizontalHeaderImage" [alt]="item.title">
         </td>
         <td>{{ item.title }}</td>
         <td>

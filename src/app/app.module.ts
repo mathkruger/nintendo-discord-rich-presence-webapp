@@ -9,6 +9,7 @@ import { GameSearchComponent } from './components/game-search/game-search.compon
 import { GameListComponent } from './components/game-list/game-list.component';
 import { GameCurrentPlayingComponent } from './components/game-current-playing/game-current-playing.component';
 import { GameSelectorComponent } from './components/game-selector/game-selector.component';
+import { ThemeSelectorComponent } from './components/theme-selector/theme-selector.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { GameSelectorComponent } from './components/game-selector/game-selector.
     GameSearchComponent,
     GameListComponent,
     GameCurrentPlayingComponent,
-    GameSelectorComponent
+    GameSelectorComponent,
+    ThemeSelectorComponent
   ],
   imports: [
     BrowserModule,

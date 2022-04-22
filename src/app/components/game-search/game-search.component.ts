@@ -12,12 +12,16 @@ export class GameSearchComponent implements OnInit {
   constructor(private gameService: GameService) { }
 
   gameList: Game[] = [];
+  loading = false;
 
   ngOnInit() {
   }
 
   searchGame(term: string) {
+    this.loading = true;
+    this.gameList = [];
     this.gameService.searchGame(term).subscribe(items => {
+      this.loading = false;
       this.gameList = items;
     });
   }
