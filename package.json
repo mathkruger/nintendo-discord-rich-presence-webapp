@@ -14,12 +14,9 @@
     "init:server": "git subtree add --prefix server https://github.com/mathkruger/nintendo-discord-rich-presence-server.git master --squash && npm run install-dependencies:server && npm run create-config:server",
     "update:server": "git subtree pull --prefix server https://github.com/mathkruger/nintendo-discord-rich-presence-server.git master --squash && npm run install-dependencies:server",
     "start:electron": "npm run update:server && electron .",
-    "move-bundled-server:electron": "mv resources/app/server ./server",
     "start-and-build:electron": "ng build --base-href ./ && npm run start:electron",
-    "create-bundle-linux:electron": "npx electron-packager . --platform=linux --arch=x64 nintendo-rich-presence --out out",
-    "package-linux:electron": "npm run create-bundle-linux:electron && cd ./out/nintendo-rich-presence-linux-x64 && npm run move-bundled-server:electron",
-    "create-bundle-windows:electron": "npx electron-packager . --platform=win32 --arch=x64 nintendo-rich-presence --out out",
-    "package-windows:electron": "npm run create-bundle-windows:electron && cd ./out/nintendo-rich-presence-win32-x64 && npm run move-bundled-server:electron"
+    "package-linux:electron": "sh ./electron_scripts/bundle.sh linux x64",
+    "package-windows:electron": "sh ./electron_scripts/bundle.sh win32 x64"
   },
   "private": true,
   "dependencies": {
