@@ -2,7 +2,10 @@
 
 Com esse programa você pode controlar o jogo que você está jogando no seu console Nintendo.
 
-## Começando a usar
+## Download
+Baixe a versão para o seu sistema através dos [Releases](https://github.com/mathkruger/nintendo-discord-rich-presence-webapp/releases). Não se esqueça de criar seu app na twitch para ter acesso às chaves de API, através [deste link](https://dev.twitch.tv/console/apps/create).
+
+## Como buildar localmente
 ~~~shell
 git clone https://github.com/mathkruger/nintendo-discord-rich-presence-webapp.git
 npm install
