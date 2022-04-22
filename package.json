@@ -8,13 +8,15 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "init": "npm run build && npm run init:server",
+    "init": "ng build --base-href ./ && npm run init:server",
     "install-dependencies:server": "cd server && npm install",
     "create-config:server": "cd server && cp config.sample.json config.json",
     "init:server": "git subtree add --prefix server https://github.com/mathkruger/nintendo-discord-rich-presence-server.git master --squash && npm run install-dependencies:server && npm run create-config:server",
     "update:server": "git subtree pull --prefix server https://github.com/mathkruger/nintendo-discord-rich-presence-server.git master --squash && npm run install-dependencies:server",
     "start:electron": "npm run update:server && electron .",
-    "start-and-build:electron": "ng build --base-href ./ && npm run start:electron"
+    "start-and-build:electron": "ng build --base-href ./ && npm run start:electron",
+    "create-bundle-linux:electron": "npx electron-packager . --platform=linux --arch=x64 nintendo-rich-presence --out out",
+    "package-linux:electron": "npm run create-bundle-linux:electron && cd ./out/nintendo-rich-presence-linux-x64 && mv resources/app/server server"
   },
   "private": true,
   "dependencies": {
@@ -37,6 +39,7 @@
     "@types/jasmine": "~3.8.0",
     "@types/node": "^12.11.1",
     "electron": "^18.1.0",
+    "electron-packager": "^15.5.1",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
