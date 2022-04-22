@@ -2,44 +2,14 @@ const {
     app,
     BrowserWindow
 } = require('electron');
-const { exec } = require("child_process");
+const api = require("./server/src/api");
 const url = require("url");
 const path = require("path");
 
 let appWindow;
-let serverProcess;
+let server;
 
-function killProcess(process) {
-    if (serverProcess.killed) return;
-
-    exec("kill " + (Number.parseInt(process.pid) + 1), (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-    });
-}
-
-function initWindow() {
-    serverProcess = exec("node server/src/index.js &", (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-
-        console.log("Server iniciado", stdout);
-    });
-    
+function initWindow() {   
     appWindow = new BrowserWindow({
         width: 1000,
         height: 800,
@@ -59,6 +29,8 @@ function initWindow() {
     appWindow.on('closed', function () {
         appWindow = null;
     });
+
+    server = api.listen(3333);
 }
 
 app.on('ready', initWindow);
@@ -66,7 +38,11 @@ app.on('ready', initWindow);
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') {
         app.quit();
-        killProcess(serverProcess);
+
+        if (server) {
+            server.close();
+            server = null;
+        }
     }
 });
 
