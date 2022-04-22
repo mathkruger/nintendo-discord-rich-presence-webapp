@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Game } from 'src/app/models/game';
 import { DiscordService } from 'src/app/services/discord.service';
 import { GameService } from 'src/app/services/game.service';
 
@@ -11,7 +12,7 @@ export class GameCurrentPlayingComponent implements OnInit {
 
   constructor(private gameService: GameService, private discordService: DiscordService) { }
 
-  currentGame: any;
+  currentGame: Game | null = null;
   state: 'playing' | 'paused' | null = null;
 
   ngOnInit() {
@@ -22,13 +23,13 @@ export class GameCurrentPlayingComponent implements OnInit {
   }
 
   pause() {
-    this.discordService.updateDiscord(this.currentGame.name, 'paused').subscribe(() => {
+    this.discordService.updateDiscord(this.currentGame?.title || "", 'paused').subscribe(() => {
       this.state = 'paused';
     });
   }
 
   play() {
-    this.discordService.updateDiscord(this.currentGame.name, 'playing').subscribe(() => {
+    this.discordService.updateDiscord(this.currentGame?.title || "", 'playing').subscribe(() => {
       this.state = 'playing';
     });
   }

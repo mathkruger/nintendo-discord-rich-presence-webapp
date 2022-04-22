@@ -7,8 +7,8 @@
     </thead>
     <tbody>
       <tr *ngFor="let item of list">
-        <td style="min-width: 300;">
-          <img class="cover-image" [src]="'https://' + item.boxart" [alt]="item.title">
+        <td style="max-width: 300;">
+          <img class="cover-image" [src]="item.boxart" [alt]="item.title">
         </td>
         <td>{{ item.title }}</td>
         <td>
