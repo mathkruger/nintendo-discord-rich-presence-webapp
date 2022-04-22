@@ -9,6 +9,5 @@ Baixe a versão para o seu sistema através dos [Releases](https://github.com/ma
 ~~~shell
 git clone https://github.com/mathkruger/nintendo-discord-rich-presence-webapp.git
 npm install
-npm run init
-npm run start:electron
+npm run start-and-build:electron
 ~~~
