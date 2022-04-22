@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './services/auth.service';
 import { DiscordService } from './services/discord.service';
 import { GameService } from './services/game.service';
 
@@ -10,29 +9,20 @@ import { GameService } from './services/game.service';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private authService: AuthService,
     private gameService: GameService,
     private discordService: DiscordService) {
 
   }
 
-  isLoading = true;
-
   ngOnInit(): void {
-    this.authService.getAuthToken().subscribe(auth => {
-      window.localStorage.setItem('access_token', auth.access_token);
+    const currentGame = window.localStorage.getItem('currentGame');
 
-      const currentGame = window.localStorage.getItem('currentGame');
-
-      if (currentGame) {
-        const gameObject = JSON.parse(currentGame);
-        this.discordService.updateDiscord(gameObject.name, 'playing').subscribe(() => {
-          this.gameService.setCurrentSelectedGame(gameObject);
-        });
-      }
-
-      this.isLoading = false;
-    });
+    if (currentGame) {
+      const gameObject = JSON.parse(currentGame);
+      this.discordService.updateDiscord(gameObject.title, 'playing').subscribe(() => {
+        this.gameService.setCurrentSelectedGame(gameObject);
+      });
+    }
   }
 
   title = 'nintendo-discord-rich-presence-webapp';

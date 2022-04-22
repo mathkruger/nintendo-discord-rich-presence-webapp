@@ -12,7 +12,7 @@
     "install-dependencies:server": "cd server && npm install",
     "init:server": "git subtree add --prefix server https://github.com/mathkruger/nintendo-discord-rich-presence-server.git master --squash && npm run install-dependencies:server",
     "update:server": "git rm --cached ./server -r && rm -r server && npm run init:server",
-    "start:electron": "npm run update:server && electron .",
+    "start:electron": "electron .",
     "start-and-build:electron": "ng build --base-href ./ && npm run start:electron",
     "package-linux:electron": "sh ./electron_scripts/bundle.sh linux x64",
     "package-windows:electron": "WINEARCH=win64 WINEPREFIX=~/.wine64 sh ./electron_scripts/bundle.sh win32 x64"

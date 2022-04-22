@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { Game } from 'src/app/models/game';
 import { DiscordService } from 'src/app/services/discord.service';
 import { GameService } from 'src/app/services/game.service';
 
@@ -7,7 +8,7 @@ import { GameService } from 'src/app/services/game.service';
   templateUrl: './game-list.component.html',
   styleUrls: ['./game-list.component.css']
 })
-export class GameListComponent implements OnChanges {
+export class GameListComponent {
 
   constructor(
     public gameService: GameService,
@@ -15,20 +16,12 @@ export class GameListComponent implements OnChanges {
   ) { }
 
   @Input()
-  list: any[] = [];
+  list: Game[] = [];
 
-  ngOnChanges() {
-    this.list.forEach(item => {
-      this.gameService.getGameThumbnail(item.cover).subscribe(cover => {
-        item.coverURL = cover.url;
-      });
-    });
-  }
-
-  selectGame(game: any) {
+  selectGame(game: Game) {
     window.scrollTo(0,0);
     window.localStorage.setItem('currentGame', JSON.stringify(game));
-    this.discordService.updateDiscord(game.name, 'playing').subscribe(() => {
+    this.discordService.updateDiscord(game.title, 'playing').subscribe(() => {
       this.gameService.setCurrentSelectedGame(game);
     });
   }

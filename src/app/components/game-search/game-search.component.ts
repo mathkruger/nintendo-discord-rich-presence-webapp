@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Game } from 'src/app/models/game';
 import { GameService } from 'src/app/services/game.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class GameSearchComponent implements OnInit {
 
   constructor(private gameService: GameService) { }
 
-  gameList: any[] = [];
+  gameList: Game[] = [];
 
   ngOnInit() {
   }

@@ -8,9 +8,9 @@
     <tbody>
       <tr *ngFor="let item of list">
         <td style="min-width: 300;">
-          <img class="cover-image" [src]="'https://' + item.coverURL" [alt]="item.name">
+          <img class="cover-image" [src]="'https://' + item.boxart" [alt]="item.title">
         </td>
-        <td>{{ item.name }}</td>
+        <td>{{ item.title }}</td>
         <td>
           <button (click)="selectGame(item)">Jogar</button>
         </td>
