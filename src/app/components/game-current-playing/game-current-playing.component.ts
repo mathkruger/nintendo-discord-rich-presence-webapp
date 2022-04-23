@@ -13,7 +13,7 @@ export class GameCurrentPlayingComponent implements OnInit {
   constructor(private gameService: GameService, private discordService: DiscordService) { }
 
   currentGame: Game | null = null;
-  state: 'playing' | 'paused' | null = null;
+  state: 'playing' | 'lobby' | 'paused' | null = null;
 
   ngOnInit() {
     this.gameService.getCurrentSelectedGame().subscribe(item => {
@@ -38,6 +38,12 @@ export class GameCurrentPlayingComponent implements OnInit {
     this.discordService.updateDiscord('💤💤💤', 'no-game').subscribe(() => {
       this.state = null;
       this.gameService.setCurrentSelectedGame(null);
+    });
+  }
+
+  enterLobby() {
+    this.discordService.updateDiscord(this.currentGame?.title || "", 'lobby').subscribe(() => {
+      this.state = 'lobby';
     });
   }
 

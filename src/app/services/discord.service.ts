@@ -9,7 +9,7 @@ export class DiscordService {
 
   constructor(private httpClient: HttpClient) {}
 
-  updateDiscord(gameName: string, state: 'playing' | 'paused' | 'no-game') {
+  updateDiscord(gameName: string, state: 'playing' | 'lobby' | 'paused' | 'no-game') {
     const params = new HttpParams()
     .set('state', state)
     .set('details', encodeURI(gameName));
