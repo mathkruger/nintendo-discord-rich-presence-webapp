@@ -13,10 +13,8 @@
       <button (click)="pause()" *ngIf="state === 'playing'">Pausar</button>
       <button (click)="play()" *ngIf="state === 'paused'">Continuar</button>
 
-      <ng-container *ngIf="currentGame.generalFilters?.includes('Nintendo Switch Online compatible')">
-        <button (click)="enterLobby()" *ngIf="state === 'playing' || state === 'paused'">Entrar no lobby</button>
-        <button (click)="play()" *ngIf="state === 'lobby'">Sair do lobby</button>
-      </ng-container>
+      <button (click)="enterLobby()" *ngIf="state === 'playing' || state === 'paused'">Entrar no lobby</button>
+      <button (click)="play()" *ngIf="state === 'lobby'">Sair do lobby</button>
 
       <button (click)="stop()">Parar</button>
     </div>

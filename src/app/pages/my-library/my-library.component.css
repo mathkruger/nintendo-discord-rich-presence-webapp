@@ -1,0 +1,32 @@
+.game-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.game-list .item {
+    width: 25%;
+}
+
+.game-list .item img {
+    margin: 0 auto;
+}
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+@media screen and (max-width: 600px) {
+    .main {
+        margin-top: 2.5rem;
+    }
+    
+    .game-list .item {
+        width: 100%;
+    }
+
+}

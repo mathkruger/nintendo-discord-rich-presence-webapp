@@ -3,11 +3,15 @@
     <tbody>
       <tr *ngFor="let item of list">
         <td style="max-width: 300;">
-          <img class="cover-image" [src]="item.boxart || item.horizontalHeaderImage" [alt]="item.title">
+          <img class="cover-image" [src]="item.horizontalHeaderImage" [alt]="item.title">
         </td>
         <td>{{ item.title }}</td>
         <td>
-          <button (click)="selectGame(item)">Jogar</button>
+          <div class="action-buttons">
+            <button (click)="selectGame(item)">Jogar</button>
+            <button *ngIf="!isGameInLibrary(item)" (click)="addGameToLibrary(item)">+</button>
+            <button *ngIf="isGameInLibrary(item)" (click)="removeGameFromLibrary(item)">-</button>
+          </div>
         </td>
       </tr>
     </tbody>

@@ -1,0 +1,18 @@
+.main {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.main .section {
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .main {
+        flex-direction: column;
+        margin-top: 2.5rem;
+    }
+}

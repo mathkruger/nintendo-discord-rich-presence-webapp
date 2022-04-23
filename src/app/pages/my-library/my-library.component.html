@@ -1,0 +1,20 @@
+<main class="main">
+  <h2>Minha biblioteca de jogos</h2>
+
+  <div class="game-list">
+    <blockquote class="item" *ngFor="let item of library?.items">
+      <img [src]="item.game.horizontalHeaderImage" [alt]="item.game.title" />
+      <p>
+        <strong>{{ item.game.title }}</strong>
+      </p>
+      <p *ngIf="item.timesPlayed === 0">Você ainda não jogou esse jogo!</p>
+      <p *ngIf="item.timesPlayed === 1">Você joogou esse jogo uma vez!</p>
+      <p *ngIf="item.timesPlayed > 1">Você jogou esse jogo {{ item.timesPlayed }} vezes!</p>
+
+      <div class="action-buttons">
+        <button (click)="selectGame(item.game)">Jogar</button>
+        <button (click)="removeGameFromLibrary(item.game)">-</button>
+      </div>
+    </blockquote>
+  </div>
+</main>

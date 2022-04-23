@@ -8,8 +8,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { GameSearchComponent } from './components/game-search/game-search.component';
 import { GameListComponent } from './components/game-list/game-list.component';
 import { GameCurrentPlayingComponent } from './components/game-current-playing/game-current-playing.component';
-import { GameSelectorComponent } from './components/game-selector/game-selector.component';
 import { ThemeSelectorComponent } from './components/theme-selector/theme-selector.component';
+import { HeaderComponent } from './components/header/header.component';
+
+import { GameSelectorComponent } from './pages/game-selector/game-selector.component';
+import { MyLibraryComponent } from './pages/my-library/my-library.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +20,10 @@ import { ThemeSelectorComponent } from './components/theme-selector/theme-select
     GameSearchComponent,
     GameListComponent,
     GameCurrentPlayingComponent,
+    ThemeSelectorComponent,
+    HeaderComponent,
     GameSelectorComponent,
-    ThemeSelectorComponent
+    MyLibraryComponent
   ],
   imports: [
     BrowserModule,

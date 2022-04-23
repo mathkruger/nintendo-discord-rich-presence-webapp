@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Game } from 'src/app/models/game';
 import { DiscordService } from 'src/app/services/discord.service';
 import { GameService } from 'src/app/services/game.service';
+import { LibraryService } from 'src/app/services/library.service';
 
 @Component({
   selector: 'app-game-current-playing',
@@ -10,7 +11,11 @@ import { GameService } from 'src/app/services/game.service';
 })
 export class GameCurrentPlayingComponent implements OnInit {
 
-  constructor(private gameService: GameService, private discordService: DiscordService) { }
+  constructor(
+    private gameService: GameService,
+    private discordService: DiscordService,
+    private libraryService: LibraryService
+  ) { }
 
   currentGame: Game | null = null;
   state: 'playing' | 'lobby' | 'paused' | null = null;
