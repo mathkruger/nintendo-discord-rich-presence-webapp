@@ -1,0 +1,50 @@
+.main {
+    display: flex;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.main .section {
+    width: 100%;
+}
+
+.profile {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile .profile-pic {
+    max-width: 50px;
+    border-radius: 50%;
+    border: 3px solid gray;
+    margin: 0;
+}
+
+.profile .profile-pic.online {
+    border: 3px solid green;
+}
+
+.profile .profile-pic.inactive {
+    border: 3px solid orangered;
+}
+
+.profile .profile-info p {
+    margin: 0;
+    font-size: 12px;
+}
+
+.profile .profile-info p.username {
+    font-weight: 900;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 600px) {
+    .main {
+        flex-direction: column;
+        margin-top: 2.5rem;
+    }
+}

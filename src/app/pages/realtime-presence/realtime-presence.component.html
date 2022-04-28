@@ -1,0 +1,23 @@
+<main class="main" *ngIf="user">
+  <section class="section">
+    <div class="profile">
+      <img class="profile-pic" [ngClass]="{
+        'online': user.presence.state === 'ONLINE',
+        'inactive': user.presence?.state === 'INACTIVE'
+      }" [src]="user?.imageUri" [alt]="user.name" >
+      <div class="profile-info">
+        <p class="username">{{ user.name }}</p>
+        <p>{{ statusLabels[user.presence.state] }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <app-game-current-playing [showButtons]="false"></app-game-current-playing>
+  </section>
+</main>
+
+<div *ngIf="!user" class="main">
+  <h2>Carregando ...</h2>
+  <p>Caso não carregue, feche e abra novamente. Problemas na API da Nintendo, desculpa.</p>
+</div>

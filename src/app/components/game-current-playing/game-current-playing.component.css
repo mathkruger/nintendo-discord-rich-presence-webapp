@@ -3,11 +3,16 @@
     background: var(--nc-bg-2);
     border-left: 5px solid var(--nc-bg-3);
 }
+
 .game-thumb {
     display: block;
     width: 100%;
     margin: 0 auto;
     margin-bottom: 1rem;
+}
+
+.game-thumb.small {
+    max-width: 300px;
 }
 
 .description {

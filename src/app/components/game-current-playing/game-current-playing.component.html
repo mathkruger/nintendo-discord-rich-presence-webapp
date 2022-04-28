@@ -2,14 +2,14 @@
 
 <div class="game-container">
   <ng-container *ngIf="currentGame; else elseTemplate">
-    <img class="game-thumb" [src]="currentGame.horizontalHeaderImage" [alt]="currentGame.title">
+    <img class="game-thumb" [ngClass]="{'small': !showButtons}" [src]="currentGame.horizontalHeaderImage" [alt]="currentGame.title">
     <h3>
       {{ currentGame.title }}
     </h3>
     <p class="description">
       {{ currentGame.description }}
     </p>
-    <div class="action-buttons">
+    <div *ngIf="showButtons" class="action-buttons">
       <button (click)="pause()" *ngIf="state === 'playing'">Pausar</button>
       <button (click)="play()" *ngIf="state === 'paused'">Continuar</button>
 

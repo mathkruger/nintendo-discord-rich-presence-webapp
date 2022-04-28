@@ -17,6 +17,7 @@ export class GameCurrentPlayingComponent implements OnInit {
     private libraryService: LibraryService
   ) { }
 
+  @Input() showButtons = true;
   currentGame: Game | null = null;
   state: 'playing' | 'lobby' | 'paused' | null = null;
 

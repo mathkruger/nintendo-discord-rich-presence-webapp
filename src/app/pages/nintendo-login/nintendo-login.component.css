@@ -1,0 +1,20 @@
+.url-container {
+    display: block;
+    margin-bottom: 1rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form input,
+.form button {
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    .main {
+        margin-top: 2.5rem;
+    }
+}

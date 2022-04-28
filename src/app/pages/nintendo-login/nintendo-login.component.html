@@ -1,0 +1,20 @@
+<main class="main">
+  <h2>Login</h2>
+  <p>O login ainda é meio zoado. Você precisa logar em uma outra conta onde sua conta principal
+    está adicionada e então informar o seu username oficial para que ele seja rastreado.
+  </p>
+
+  <div>
+    <p>Abra o link abaixo e cole em algum navegador.</p>
+    <code class="url-container">
+      {{ authLogin?.url }}
+    </code>
+    <p>Copie o link do botão vermelho "User essa conta" e cole abaixo</p>
+
+    <div class="form">
+      <input [(ngModel)]="receivedUrl" type="text" placeholder="Informe o link do botão vermelho" />
+      <input [(ngModel)]="username" type="text" placeholder="Username a ser rastreado (seu user oficial, provavelmente)" />
+      <button [disabled]="receivedUrl?.length == 0 || username?.length == 0" (click)="login()">Entrar</button>
+    </div>
+  </div>
+</main>

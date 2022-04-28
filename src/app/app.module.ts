@@ -13,6 +13,9 @@ import { HeaderComponent } from './components/header/header.component';
 
 import { GameSelectorComponent } from './pages/game-selector/game-selector.component';
 import { MyLibraryComponent } from './pages/my-library/my-library.component';
+import { FormsModule } from '@angular/forms';
+import { RealtimePresenceComponent } from './pages/realtime-presence/realtime-presence.component';
+import { NintendoLoginComponent } from './pages/nintendo-login/nintendo-login.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +26,13 @@ import { MyLibraryComponent } from './pages/my-library/my-library.component';
     ThemeSelectorComponent,
     HeaderComponent,
     GameSelectorComponent,
-    MyLibraryComponent
+    MyLibraryComponent,
+    RealtimePresenceComponent,
+    NintendoLoginComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     HttpClientModule,
   ],
