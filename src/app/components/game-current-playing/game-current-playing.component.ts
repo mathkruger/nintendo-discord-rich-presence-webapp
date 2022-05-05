@@ -29,13 +29,13 @@ export class GameCurrentPlayingComponent implements OnInit {
   }
 
   pause() {
-    this.discordService.updateDiscord(this.currentGame?.title || "", 'paused').subscribe(() => {
+    this.discordService.updateDiscord(this.currentGame?.title || "", 'paused', null, 'https://www.nintendo.com' + this.currentGame?.url).subscribe(() => {
       this.state = 'paused';
     });
   }
 
   play() {
-    this.discordService.updateDiscord(this.currentGame?.title || "", 'playing').subscribe(() => {
+    this.discordService.updateDiscord(this.currentGame?.title || "", 'playing', 'https://www.nintendo.com' + this.currentGame?.url).subscribe(() => {
       this.state = 'playing';
     });
   }
@@ -48,7 +48,7 @@ export class GameCurrentPlayingComponent implements OnInit {
   }
 
   enterLobby() {
-    this.discordService.updateDiscord(this.currentGame?.title || "", 'lobby').subscribe(() => {
+    this.discordService.updateDiscord(this.currentGame?.title || "", 'lobby', 'https://www.nintendo.com' + this.currentGame?.url).subscribe(() => {
       this.state = 'lobby';
     });
   }

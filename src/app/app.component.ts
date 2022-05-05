@@ -30,11 +30,6 @@ export class AppComponent implements OnInit {
         this.gameService.setCurrentSelectedGame(gameObject);
       });
     }
-
-    if (!this.nintendoService.isTokenValid()) {
-      this.nintendoService.removeToken();
-      this.nintendoService.removeUsername();
-    }
   }
 
   title = 'nintendo-discord-rich-presence-webapp';

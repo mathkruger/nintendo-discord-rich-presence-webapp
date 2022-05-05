@@ -29,7 +29,7 @@ export class GameListComponent implements OnInit {
   selectGame(game: Game) {
     window.scrollTo(0,0);
     window.localStorage.setItem('currentGame', JSON.stringify(game));
-    this.discordService.updateDiscord(game.title, 'playing').subscribe(() => {
+    this.discordService.updateDiscord(game.title, 'playing', 'https://www.nintendo.com' + game.url).subscribe(() => {
       this.gameService.setCurrentSelectedGame(game);
     });
   }

@@ -18,6 +18,14 @@
 
       <button (click)="stop()">Parar</button>
     </div>
+    <ul *ngIf="!showButtons">
+      <li *ngIf="currentGame.firstPlayedAt">
+        Jogado pela primeira vez em <strong>{{ currentGame.firstPlayedAt | date: 'dd/MM/yyyy' }}</strong>
+      </li>
+      <li *ngIf="currentGame.totalPlaytime">
+        Tempo de jogo: <strong>{{ currentGame.totalPlaytime.hours }}:{{ currentGame.totalPlaytime.minutes }}:{{ currentGame.totalPlaytime.seconds }}</strong>
+      </li>
+    </ul>
   </ng-container>
   <ng-template #elseTemplate>
     <p>Nenhum jogo selecionado, busque e selecione um jogo ao lado</p>

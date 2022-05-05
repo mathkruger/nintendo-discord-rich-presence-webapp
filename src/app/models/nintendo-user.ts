@@ -1,3 +1,5 @@
+import { Game } from "./game";
+
 export interface NintendoUser {
     id: number;
     nsaId: string;
@@ -24,4 +26,32 @@ export interface NintendoGame {
     totalPlayTime: number;
     firstPlayedAt: number;
     sysDescription: string;
+}
+
+export interface CustomTime {
+    hours: number;
+    minutes: number;
+    seconds: number;
+}
+
+export function presenceGameToEshopGame(game: NintendoGame) {
+    return <Game>{
+        title: game.name,
+        horizontalHeaderImage: game.imageUri,
+        url: game.shopUri,
+        totalPlaytime: secondsToDate(game.totalPlayTime * 60),
+        firstPlayedAt: new Date(game.firstPlayedAt * 1000)
+    };
+}
+
+export function secondsToDate(d: number) {
+    const hours = Math.floor(d / 3600);
+    const minutes = Math.floor(d % 3600 / 60);
+    const seconds = Math.floor(d % 3600 % 60);
+
+    return <CustomTime>{
+        hours,
+        minutes,
+        seconds
+    }
 }

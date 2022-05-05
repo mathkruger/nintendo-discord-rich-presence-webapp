@@ -9,14 +9,23 @@ export class DiscordService {
 
   constructor(private httpClient: HttpClient) {}
 
-  updateDiscord(gameName: string, state: 'playing' | 'lobby' | 'paused' | 'no-game', startTime: string | null = null) {
+  updateDiscord(
+    gameName: string,
+    state: 'playing' | 'lobby' | 'paused' | 'no-game',
+    friendCode: string | null = null,
+    eshopUrl: string | null = null
+  ) {
     const params = new HttpParams()
     .set('state', state)
-    .set('details', encodeURI(gameName));
+    .set('details', encodeURI(gameName))
+    .set('friendCode', friendCode || '')
+    .set('eshopUrl', encodeURIComponent(eshopUrl || ''));
 
-    if (startTime) {
-      params.set('startTime', startTime);
-    }
+    params.keys().forEach(key => {
+      if (params.get(key) === '') {
+        params.delete(key);
+      }
+    });
     
     return this.httpClient.get<any[]>(environment.serverUrl + `discord/update`, {
       params: params

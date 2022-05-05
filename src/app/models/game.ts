@@ -1,3 +1,5 @@
+import { CustomTime } from "./nintendo-user";
+
 export interface Game {
     /** Whether this game is available or not */
     availability: string[];
@@ -60,4 +62,7 @@ export interface Game {
     url: string;
     /** Additional information returned by the API, it doesn't really serve any purpose but documenting it anyway because it's there. */
     _distinctSeqID: number;
+
+    totalPlaytime: CustomTime | null;
+    firstPlayedAt: Date | null;
 }

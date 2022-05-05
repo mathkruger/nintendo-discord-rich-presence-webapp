@@ -29,7 +29,7 @@ export class MyLibraryComponent implements OnInit {
   selectGame(game: Game) {
     window.localStorage.setItem('currentGame', JSON.stringify(game));
 
-    this.discordService.updateDiscord(game.title, 'playing').subscribe(() => {
+    this.discordService.updateDiscord(game.title, 'playing', 'https://www.nintendo.com' + game.url).subscribe(() => {
       this.libraryService.increaseTimePlayed(game);
       this.gameService.setCurrentSelectedGame(game);
       this.router.navigate([""]);

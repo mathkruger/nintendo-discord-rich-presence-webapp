@@ -1,7 +1,8 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { retry } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, retry, switchMap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { NintendoUser } from '../models/nintendo-user';
 
@@ -17,7 +18,7 @@ export class NintendoService {
   }
 
   getToken() {
-    return JSON.parse(localStorage.getItem('nintendo_token') || '{"accessToken": ""}').accessToken;
+    return JSON.parse(localStorage.getItem('nintendo_token') || '{"accessToken": "", "sessionToken": ""}');
   }
 
   setToken(token: any) {
@@ -25,7 +26,7 @@ export class NintendoService {
   }
 
   removeToken() {
-    localStorage.removeItem('nintendo_token');
+    localStorage.removeItem('nintendo_session_token');
   }
 
   getUsername() {
@@ -41,7 +42,7 @@ export class NintendoService {
   }
 
   isTokenValid() {
-    const token = this.getToken();
+    const token = this.getToken().accessToken;
     const tokenInformation = JSON.parse(atob(token.split('.')[1]));
     const expirationDate = new Date(tokenInformation.exp * 1000);
     return new Date() < expirationDate;
@@ -66,33 +67,51 @@ export class NintendoService {
       );
   }
 
-  getUserData() {
-    this.handleToken();
-
+  renewAuthToken(): Observable<any> {
+    const sessionToken = this.getToken().sessionToken;
     return this.httpClient
-    .get<NintendoUser>(environment.serverUrl + `nintendo/user`, {
-      headers: {
-        authorization: 'Bearer ' + this.getToken()
-      }
-    });
+      .get<any>(environment.serverUrl + `nintendo/token/renew?sessionToken=${sessionToken}`)
+      .pipe(
+        map(item => {
+          this.setToken({
+            sessionToken: this.getToken().sessionToken,
+            accessToken: item.accessToken,
+          });
+        })
+      );
+  }
+
+  getUserData() {
+    return this.handleTokenExpiration<NintendoUser>(
+      this.httpClient
+      .get<NintendoUser>(environment.serverUrl + `nintendo/user`, {
+        headers: {
+          authorization: 'Bearer ' + this.getToken().accessToken
+        }
+      })
+    );
   }
 
   getUserPresence(username: string) {
-    this.handleToken();
-
-    return this.httpClient
-    .get<NintendoUser>(environment.serverUrl + `nintendo/presence?userToTrack=${username}`, {
-      headers: {
-        authorization: 'Bearer ' + this.getToken()
-      }
-    });
+    return this.handleTokenExpiration<NintendoUser>(
+      this.httpClient
+      .get<NintendoUser>(environment.serverUrl + `nintendo/presence?userToTrack=${username}`, {
+        headers: {
+          authorization: 'Bearer ' + this.getToken().accessToken
+        }
+      })
+    );
   }
 
-  handleToken() {
+  handleTokenExpiration<TReturn>(requisition: Observable<TReturn>) {
     if (!this.isTokenValid()) {
-      this.logout();
-      return;
+      return this.renewAuthToken().pipe(
+        switchMap(() => {
+          return requisition
+        })
+      )
     }
-  }
 
+    return requisition;
+  }
 }

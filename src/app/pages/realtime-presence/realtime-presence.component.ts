@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Game } from 'src/app/models/game';
-import { NintendoUser } from 'src/app/models/nintendo-user';
+import { NintendoUser, presenceGameToEshopGame } from 'src/app/models/nintendo-user';
 import { DiscordService } from 'src/app/services/discord.service';
 import { GameService } from 'src/app/services/game.service';
 import { NintendoService } from 'src/app/services/nintendo.service';
@@ -47,7 +47,7 @@ export class RealtimePresenceComponent implements OnInit, OnDestroy {
 
   startUpdate(username: string) {
     this.useRealtimePresence(username);
-    
+
     this.updateInterval = setInterval(() => {
       this.useRealtimePresence(username);
     }, 30000);
@@ -59,12 +59,9 @@ export class RealtimePresenceComponent implements OnInit, OnDestroy {
 
       if (this.previousGame?.title !== this.user.presence.game.name) {
         if (this.user.presence.state === "ONLINE") {
-          const game = <Game>{
-            title: this.user.presence.game.name,
-            horizontalHeaderImage: this.user.presence.game.imageUri
-          };
-  
-          this.discordService.updateDiscord(game.title, 'playing').subscribe(() => {
+          const game = presenceGameToEshopGame(this.user.presence.game);
+
+          this.discordService.updateDiscord(game.title, 'playing', null, game.url).subscribe(() => {
             this.previousGame = game;
             this.gameService.setCurrentSelectedGame(game);
           });
@@ -78,5 +75,4 @@ export class RealtimePresenceComponent implements OnInit, OnDestroy {
       }
     });
   }
-
 }
