@@ -16,6 +16,7 @@ import { MyLibraryComponent } from './pages/my-library/my-library.component';
 import { FormsModule } from '@angular/forms';
 import { RealtimePresenceComponent } from './pages/realtime-presence/realtime-presence.component';
 import { NintendoLoginComponent } from './pages/nintendo-login/nintendo-login.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NintendoLoginComponent } from './pages/nintendo-login/nintendo-login.co
     GameSelectorComponent,
     MyLibraryComponent,
     RealtimePresenceComponent,
-    NintendoLoginComponent
+    NintendoLoginComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
